@@ -1,9 +1,12 @@
 {
   "searchSources": {
     "icherche": {
-      "url": "https://geoegl.msp.gouv.qc.ca/icherche/geopasdecode"
+      "url": "/icherche/geocode"
     },
     "datasource": {
+      "enabled": false
+    },
+    "nominatim": {
       "enabled": false
     }
   }

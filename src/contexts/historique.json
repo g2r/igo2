@@ -1,11 +1,11 @@
 {
-  "uri": "_default",
-  "title": "Risques d'inondation",
+  "uri": "historique",
+  "title": "Historique des inondations",
   "map": {
     "view": {
       "projection": "EPSG:3857",
-      "center": [-72, 52],
-      "zoom": 6
+      "center": [-82, 52],
+      "zoom": 10
     }
   },
   "layers": [
@@ -18,7 +18,6 @@
       "title": "Route",
       "type": "xyz",
       "baseLayer": true,
-      "visible": true,
       "source": {
         "url": "https://geoegl.msp.gouv.qc.ca/carto/tms/1.0.0/carte_gouv_qc_ro@EPSG_3857/{z}/{x}/{-y}.png"
       }
@@ -27,19 +26,9 @@
       "title": "Satellite",
       "type": "xyz",
       "baseLayer": true,
+      "visible": true,
       "source": {
         "url": "https://geoegl.msp.gouv.qc.ca/carto/tms/1.0.0/orthos@EPSG_3857/{z}/{x}/{-y}.png"
-      }
-    },
-    {
-      "type": "wms",
-      "optionsFromCapabilities": true,
-      "source": {
-        "url": "/ws/igo_gouvouvert.fcgi",
-        "params": {
-          "layers": "vg_observation_v_autre_wmst",
-          "version": "1.3.0"
-        }
       }
     }
   ],

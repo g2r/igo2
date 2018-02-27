@@ -1,4 +1,4 @@
-@require '~@igo2/igo2/src/style/var.styl';
+@require './var.styl';
 
 .igo-container {
   width: "calc(100% - 2 * %s)" % $igo-padding;
@@ -13,4 +13,33 @@
   height: 100%;
   width: 100%;
   overflow: auto;
+}
+
+
+igo-context-manager-tool {
+  mat-icon, .mat-line {
+    color: white;
+  }
+
+  igo-collapsible > mat-list-item.mat-list-item.mat-list-item-avatar {
+    display: none;
+  }
+}
+
+
+igo-share-map-tool {
+  button.mat-raised-button > span {
+      color: $primary-color;
+  }
+
+  label.mat-form-field-label {
+    color: white;
+  }
+
+  mat-icon {
+    color: white;
+    &:hover {
+      color: $accent-color;
+    }
+  }
 }

@@ -12,6 +12,7 @@ import { IgoModule,
 import { environment } from '../environments/environment';
 import { PortalModule } from './pages';
 import { AppComponent } from './app.component';
+import { AppToolModule } from './tools';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     RouterModule.forRoot([]),
     IgoModule.forRoot(),
+    AppToolModule.forRoot(),
 
     PortalModule
   ],

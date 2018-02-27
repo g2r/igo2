@@ -8,5 +8,10 @@
     "target": "https://geoegl.msp.gouv.qc.ca",
     "changeOrigin": true,
     "secure": false
+  },
+  "/icherche/": {
+    "target": "https://geoegl.msp.gouv.qc.ca",
+    "changeOrigin": true,
+    "secure": false
   }
 }

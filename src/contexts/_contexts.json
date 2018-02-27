@@ -1,14 +1,17 @@
 [
   {
     "uri": "_default",
-    "title": "Default Context"
-  },
-{
-    "uri": "qc911",
-    "title": "Qc-911"
+    "title": "Risques d'inondation",
+    "icon": "grain"
   },
   {
-    "uri": "embacle",
-    "title": "Embâcle (analyse temporelle)"
+    "uri": "historique",
+    "title": "Historique des inondations",
+    "icon": "history"
+  },
+  {
+    "uri": "alerte_meteo",
+    "title": "Alerte météo",
+    "icon": "warning"
   }
 ]

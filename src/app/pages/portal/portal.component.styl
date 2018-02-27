@@ -18,13 +18,12 @@ mat-sidenav-container {
 #menu-button {
   background-color: $igo-background-color;
   position: absolute;
-  left: $igo-sidenav-width;
+  left: $igo-margin;
   top: $igo-margin;
-  z-index: 2;
+  z-index: 5;
 
-  +media(mobile) {
-    right: $igo-margin;
-    left: inherit;
+  &:hover {
+    color: $primary-color;
   }
 }
 
@@ -33,23 +32,42 @@ mat-sidenav-container {
   border-radius: 0;
 }
 
+
+
 /*** Map browser ***/
 igo-map-browser {
   width: 100%;
   height: 100%;
 }
 
+igo-map-browser >>> .ol-scale-line {
+  left: 85px;
+  bottom: 2px;
+  & > .ol-scale-line-inner {
+    color: black;
+    border-color: black;
+  }
+}
+
+igo-map-browser.sidenav-offset >>> .ol-scale-line {
+  left: 490px;
+  +media(mobile) {
+    left: $igo-padding
+  }
+}
+
 /*** Search bar ***/
 igo-search-bar {
   position: absolute;
-  left: 0;
+  left: 45px;
   top: $igo-margin;
   z-index: 4;
   width: "calc(%s - 2 * %s)" % ($igo-sidenav-width $igo-margin);
   margin: 0 $igo-margin;
 
   +media(mobile) {
-    width: "calc(100% - %s - (3 * %s))" % ($igo-mobile-min-space-left $igo-margin);
+    width: auto;
+    right: 0;
   }
 }
 
@@ -99,37 +117,78 @@ igo-search-bar >>> .mat-input-element {
   padding-right: $igo-icon-button-width;
 }
 
+igo-search-bar >>> button.mat-icon-button.mat-primary:hover {
+  color: $primary-color;
+}
+
 /*** Toast ***/
 app-toast {
   position: absolute;
-  bottom: 0px;
-  width: 100%;
+  bottom: 0;
   max-height: "calc(100% - %s)" % ($igo-sidenav-margin-top);
   background-color: $igo-background-color;
-}
 
-igo-map-browser.toast-shown-offset >>> .ol-attribution {
+  left: 20%;
+  width: 60%;
   +media(mobile) {
-    bottom: 55px;
+    left: 0;
+    width: 100%;
   }
 }
 
-igo-map-browser.toast-opened-offset >>> .ol-attribution {
-  +media(mobile) {
-    bottom: 305px;
+igo-feature-list {
+  position: absolute;
+  top: 50px;
+  margin: 0 $igo-padding;
+  width: "calc(100% - %s * 2)" %  ($igo-padding);
+  max-width: 435px;
+  z-index: 10;
+  background-color: white;
+}
+
+igo-baselayers-switcher >>> .igo-mini-basemap-container:hover .igo-mini-basemap-title {
+  color: white;
+  text-shadow: 0 0 5px #000 !important;
+}
+
+igo-geolocate-button, igo-zoom-button {
+  & >>> button.mat-icon-button.mat-primary {
+    color: white;
+    background-color: $primary-color;
   }
 }
 
-igo-map-browser.sidenav-offset >>> .ol-attribution {
-  left: 410px;
+igo-zoom-button >>> button.mat-icon-button.mat-primary:hover {
+  color: white;
+  background-color: $primary-color;
+}
+
+#logo {
+  position: absolute;
+  bottom: $igo-margin;
+  right: 60px;
+}
+
+igo-map-browser.toast-shown-offset {
   +media(mobile) {
-    left: $igo-padding
+    & >>> .ol-scale-line {
+      bottom: 52px;
+    }
+
+    & >>> #logo {
+      bottom: 55px;
+    }
   }
 }
 
-igo-map-browser.igo-attribution-offset.sidenav-offset >>> .ol-attribution {
-  left: 495px;
+igo-map-browser.toast-opened-offset {
   +media(mobile) {
-    left: 90px;
+    & >>> .ol-scale-line {
+      bottom: 302px;
+    }
+
+    & >>> #logo {
+      bottom: 305px;
+    }
   }
 }

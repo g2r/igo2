@@ -23,16 +23,13 @@ export const environment: Environment = {
     searchSources: {
       nominatim: {
         enabled: false
-      },
-      icherche: {
-        url: 'https://geoegl.msp.gouv.qc.ca/icherche/geopasdecode'
-      },
-      datasource: {
-        url: 'https://geoegl.msp.gouv.qc.ca/igo2/api/layers/search'
       }
     },
     language: {
       prefix: './assets/locale/'
+    },
+    catalog: {
+      baseLayers: true
     }
   }
 };

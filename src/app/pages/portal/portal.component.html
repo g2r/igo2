@@ -5,6 +5,11 @@
     (click)="closeSidenav()">
   </app-backdrop>
 
+  <app-sidenav
+    [opened]="sidenavOpened"
+    [tool]="toolService.selectedTool$ | async">
+  </app-sidenav>
+
   <button
     mat-icon-button
     id="menu-button"
@@ -14,33 +19,37 @@
     [matTooltip]="(sidenavOpened ? 'Close Menu' : 'Open Menu') | translate"
     (click)="toggleSidenav()">
     <mat-icon>
-      <ng-container *ngIf="!sidenavOpened">menu</ng-container>
-      <ng-container *ngIf="sidenavOpened">keyboard_arrow_left</ng-container>
+      <ng-container>menu</ng-container>
     </mat-icon>
   </button>
 
-  <igo-search-bar
-    igoSearchUrlParam
-    [placeholder]="'Search for an address or a place' | translate"
-    floatLabel="never">
-  </igo-search-bar>
+  <div igoClickout (clickout)="clickoutSearchBar()">
+    <igo-search-bar
+      igoSearchUrlParam
+      placeholder="Adresse, code postal ou municipalité"
+      floatLabel="never"
+      [term]="searchTerm"
+      [searchIcon]="true"
+      (search)="search($event)"
+      (click)="clickSearchBar()">
+    </igo-search-bar>
 
-  <app-sidenav
-    [opened]="sidenavOpened"
-    [feature]="featureService.focusedFeature$ | async"
-    [tool]="toolService.selectedTool$ | async"
-    [media]="mediaService.media$ | async">
-  </app-sidenav>
+    <igo-feature-list
+      igoFeatureListBinding
+      [groupFeatures]="false"
+      (focus)="handleFeatureFocus($event)"
+      (select)="handleFeatureSelect($event)"
+      [display]="displaySearchResultsList">
+    </igo-feature-list>
+  </div>
 
   <igo-map-browser
     igoQuery
     igoOverlay
     igoMapContext
     igoLayerContext
-    igoDropGeoFile
     igoMapBrowserBinding
     [map]="map"
-    [ngClass]="{'igo-attribution-offset': map.getBaseLayers().length > 1}"
     [@mapStateX]="sidenavOpened ? 'right' : 'left'"
     (@mapStateX.start)="removeMapBrowserClass($event)"
     (@mapStateX.done)="updateMapBrowserClass($event)"
@@ -50,16 +59,19 @@
 
     <igo-zoom-button [map]="map" color="primary"></igo-zoom-button>
     <igo-geolocate-button [map]="map" color="primary"
-      [@controlStateY]="toastShown ? (toastOpened ? 'up' : 'down') : 'close'">
+      [@controlStateY]="(mediaService.media$ | async) === 'mobile' &&
+                        toastShown ? (toastOpened ? 'up' : 'down') : 'close'">
     </igo-geolocate-button>
-    <igo-user-button [map]="map" color="primary"
-      [@controlStateY]="toastShown ? (toastOpened ? 'up' : 'down') : 'close'">
-    </igo-user-button>
     <igo-baselayers-switcher [map]="map"
-      [@controlStateY]="toastShown ? (toastOpened ? 'up' : 'down') : 'close'"
+      [@controlStateY]="(mediaService.media$ | async) === 'mobile' &&
+                        toastShown ? (toastOpened ? 'up' : 'down') : 'close'"
       [@controlStateX]="(mediaService.media$ | async) !== 'mobile' &&
                               sidenavOpened ? 'right' : 'left'">
     </igo-baselayers-switcher>
+
+    <a id="logo" href="http://www.gouv.qc.ca" target="_blank">
+      <img src="/assets/images/gouv_qc_logo.png">
+    </a>
   </igo-map-browser>
 
   <app-toast

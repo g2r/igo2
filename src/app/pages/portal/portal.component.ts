@@ -1,13 +1,13 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
-import { debounceTime} from 'rxjs/operators';
 
-import { AuthService, Context, ContextService, DataSourceService, Feature,
-         FeatureService, IgoMap, LayerService, MapService, MediaService,
+import { AuthService, DataSourceService, Context, ContextService, MessageService,
+         Feature, FeatureType, FeatureService, IgoMap, LayerService, MapService, MediaService,
          OverlayService, SearchService, ToolService } from '@igo2/igo2';
 
 import { controlSlideX, controlSlideY, mapSlideX, mapSlideY } from './portal.animation';
+
+// import { AboutToolComponent } from '../../tools';
 
 @Component({
   selector: 'app-portal',
@@ -31,17 +31,24 @@ export class PortalComponent implements OnInit, OnDestroy {
   public features$$: Subscription;
   public context$$: Subscription;
 
-  public map = new IgoMap();
+  public featureToast: Feature;
+
+  public map = new IgoMap({
+    controls: {
+      scaleLine: true,
+      attribution: false
+    },
+    overlay: true
+  });
 
   public sidenavOpened: boolean = false;
   public toastOpened: boolean = false;
   public toastShown: boolean = false;
+  public displaySearchResultsList: boolean = false;
 
-  // True after the initial context is loaded
-  private contextLoaded = false;
+  public searchTerm: string = '';
 
-  constructor(private route: ActivatedRoute,
-              public authService: AuthService,
+  constructor(public authService: AuthService,
               public featureService: FeatureService,
               public mediaService: MediaService,
               public toolService: ToolService,
@@ -51,13 +58,12 @@ export class PortalComponent implements OnInit, OnDestroy {
               public layerService: LayerService,
               public dataSourceService: DataSourceService,
               public contextService: ContextService,
+              public messageService: MessageService,
               public cdRef: ChangeDetectorRef) {}
 
   ngOnInit() {
-    window['IGO'] = this;
 
-    this.authService.authenticate$
-          .subscribe(() => this.contextLoaded = false);
+    window['IGO'] = this;
 
     this.features$$ = this.featureService.features$
       .subscribe((features) => this.handleFeaturesChange(features));
@@ -66,7 +72,7 @@ export class PortalComponent implements OnInit, OnDestroy {
       .subscribe((feature) => this.handleFeatureSelect(feature));
 
     this.context$$ = this.contextService.context$
-      .subscribe((context) => this.handleContextChange(context));
+         .subscribe((context) => this.handleContextChange(context));
   }
 
   ngOnDestroy() {
@@ -77,16 +83,17 @@ export class PortalComponent implements OnInit, OnDestroy {
 
   closeSidenav() {
     this.sidenavOpened = false;
-    this.toastOpened = false;
+    /*this.toastOpened = false;
     if (this.mediaService.media$.value === 'mobile' &&
         this.featureService.focusedFeature$.value) {
       this.toastShown = true;
-    }
+    }*/
   }
 
   openSidenav() {
+    this.toolService.unselectTool();
     this.sidenavOpened = true;
-    this.toastShown = false;
+    // this.toastShown = false;
   }
 
   toggleSidenav() {
@@ -104,16 +111,15 @@ export class PortalComponent implements OnInit, OnDestroy {
   }
 
   updateMapBrowserClass(e) {
-    if (this.mediaService.media$.value === 'mobile') {
-      if (this.toastOpened && this.toastShown) {
-        e.element.classList.add('toast-opened-offset');
-        return;
-      }
-      if (this.toastShown) {
-        e.element.classList.add('toast-shown-offset');
-      }
+    if (this.toastOpened && this.toastShown) {
+      e.element.classList.add('toast-opened-offset');
       return;
     }
+
+    if (this.toastShown) {
+      e.element.classList.add('toast-shown-offset');
+    }
+
     if (this.sidenavOpened) {
       e.element.classList.add('sidenav-offset');
     }
@@ -139,68 +145,67 @@ export class PortalComponent implements OnInit, OnDestroy {
 
   private handleFeaturesChange(features: Feature[]) {
     if (features.length > 0) {
-      if (this.mediaService.media$.value === 'mobile') {
-        if (features[0].type.toString() === 'Feature' &&
-           (features[0].source !== 'Nominatim (OSM)' &&
-           features[0].source !== 'ICherche Québec')) {
+      if (features[0].type.toString() === 'Feature' &&
+         (features[0].source !== 'Nominatim (OSM)' &&
+         features[0].source !== 'ICherche Québec')) {
 
-             this.featureService.selectFeature(features[0]);
-             this.overlayService.setFeatures([features[0]], 'zoom');
-             this.toastShown = true;
-             return;
-        }
+           this.featureService.selectFeature(features[0]);
+      } else {
+        this.displaySearchResultsList = true;
       }
-
-      this.openSidenav();
-      const tool = this.toolService.getTool('searchResults');
-      this.toolService.selectTool(tool);
     }
   }
 
-  private handleFeatureSelect(feature: Feature) {
-    if (feature && this.mediaService.media$.value === 'mobile') {
-      if (this.sidenavOpened) {
+  handleFeatureFocus(feature: Feature) {
+    if (feature.type === FeatureType.Feature) {
+      this.overlayService.setFeatures([feature]);
+    }
+  }
+
+  handleFeatureSelect(feature: Feature) {
+    if (!feature) {
+      this.toastShown = false;
+      return;
+    }
+    if (feature.type === FeatureType.Feature) {
+      if (feature.source !== 'Nominatim (OSM)' &&
+         feature.source !== 'ICherche Québec') {
+
+           this.overlayService.setFeatures([feature]);
+           this.toastShown = true;
+           return;
+      } else {
+        this.overlayService.setFeatures([feature], 'zoom');
+        this.displaySearchResultsList = false;
+        this.toastShown = false;
+      }
+    }
+  }
+
+  handleContextChange(context: Context) {
+    if (context) {
+      const text = `'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                     Suspendisse sit amet tincidunt purus.'`;
+      this.messageService.info(text, context.title);
+      if (this.mediaService.media$.value === 'mobile') {
         this.closeSidenav();
       }
-    } else {
-      this.toastShown = false;
     }
   }
 
-  private handleContextChange(context: Context) {
-    if (context !== undefined && this.contextLoaded) {
-      const tool = this.toolService.getTool('mapDetails');
-      this.toolService.selectTool(tool);
-    }
-
-    if (context !== undefined) {
-      this.contextLoaded = true;
-    }
-
-    this.route.queryParams.subscribe(params => {
-      if (params['layers'] && params['wmsUrl']) {
-        this.addLayerByName(params['wmsUrl'], params['layers']);
-      }
-    });
+  search(term: string) {
+    this.searchTerm = term;
   }
 
-
-  private addLayerByName(url: string, name: string) {
-    const properties = {
-      title: name,
-      type: 'wms',
-      format: 'wms',
-      url: url,
-      params: {
-        layers: name
-      }
-    };
-
-    this.dataSourceService.createAsyncDataSource(properties).pipe(
-      debounceTime(100)
-    ).subscribe(dataSource =>  {
-        this.map.addLayer(
-          this.layerService.createLayer(dataSource, properties));
-      });
+  clickSearchBar() {
+    this.closeSidenav();
+    if (this.searchTerm.length >= 3) {
+      this.searchService.search(this.searchTerm);
+    }
   }
+
+  clickoutSearchBar() {
+    this.displaySearchResultsList = false;
+  }
+
 }

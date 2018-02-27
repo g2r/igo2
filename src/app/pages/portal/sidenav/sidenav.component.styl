@@ -1,10 +1,6 @@
 @require '../../../../style/var.styl';
 @require '../../../../style/media.styl';
 
-:host {
-  background-color: $igo-background-color;
-}
-
 // This is needed because whe using the
 // sidenav "side" mode, the z-index is 1
 // and the sidenav appears below our backdrop.
@@ -15,6 +11,7 @@
 }
 
 mat-sidenav {
+  background-color: $primary-color;
   width: $igo-sidenav-width;
 
   +media(mobile) {
@@ -22,6 +19,10 @@ mat-sidenav {
   }
 
   box-shadowed();
+}
+
+igo-toolbar >>> .mat-list-item-content {
+  color: white;
 }
 
 .igo-sidenav-content {
@@ -59,14 +60,15 @@ igo-toolbar >>> igo-list {
 
 .igo-toolbox-container {
   position: absolute;
-  top: 51px;
+  top: 96px;
   bottom: 0;
   right: 0;
+  color: white;
   overflow: auto;
 }
 
 .igo-toolbox-container.shown {
-  left: 48px;
+  left: 0;
 }
 
 /*** Feature details ***/
@@ -74,8 +76,4 @@ igo-toolbar >>> igo-list {
 :host >>> .igo-flexible-fill .igo-container {
   bordered-top();
   border-box();
-}
-
-igo-feature-details >>> table {
-  width: 100%;
 }

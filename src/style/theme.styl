@@ -1,5 +1,4 @@
-$primary-color = rgb(25, 118, 210);
-$accent-color = rgb(224, 224, 224);
+@require './var.styl';
 
 [igolistitem][color="primary"].igo-list-item-selected {
   background-color: $primary-color;
@@ -7,6 +6,14 @@ $accent-color = rgb(224, 224, 224);
 
 [igolistitem][color="accent"].igo-list-item-selected {
   background-color: $accent-color
+}
+
+[igolistitem][color="primary"]:hover {
+  background-color: lightness($primary-color, 95%);
+}
+
+[igolistitem][color="accent"]:hover {
+  background-color: lightness($accent-color, 75%);
 }
 
 table.igo-striped tbody tr:nth-child(odd) {

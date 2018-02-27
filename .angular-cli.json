@@ -9,6 +9,7 @@
       "outDir": "dist",
       "assets": [
         "assets/favicons",
+        "assets/images",
         "assets/locale",
         "contexts",
         "config",

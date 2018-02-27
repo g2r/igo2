@@ -1,8 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Media, Feature, Tool, ToolService } from '@igo2/igo2';
-
-import { FlexibleState } from '../../../shared';
+import { Tool, ToolService } from '@igo2/igo2';
 
 
 @Component({
@@ -19,12 +17,6 @@ export class SidenavComponent {
   }
   private _opened: boolean;
 
-  @Input()
-  get feature(): Feature { return this._feature; }
-  set feature(value: Feature) {
-    this._feature = value;
-  }
-  private _feature: Feature;
 
   @Input()
   get tool(): Tool { return this._tool; }
@@ -33,23 +25,7 @@ export class SidenavComponent {
   }
   private _tool: Tool;
 
-  @Input()
-  get media(): Media { return this._media; }
-  set media(value: Media) {
-    this._media = value;
-  }
-  private _media: Media;
-
-  public topPanelState: FlexibleState = 'initial';
 
   constructor(public toolService: ToolService) { }
-
-  toggleTopPanel() {
-    if (this.topPanelState === 'initial') {
-      this.topPanelState = 'expanded';
-    } else {
-      this.topPanelState = 'initial';
-    }
-  }
 
 }
