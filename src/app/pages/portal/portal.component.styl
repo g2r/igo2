@@ -56,6 +56,15 @@ igo-map-browser.sidenav-offset >>> .ol-scale-line {
   }
 }
 
+igo-legend-button {
+  position: absolute;
+  bottom: 140px;
+  right: $igo-margin;
+  +media(mobile) {
+    bottom: 50px;
+  }
+}
+
 /*** Search bar ***/
 igo-search-bar {
   position: absolute;
@@ -151,7 +160,7 @@ igo-baselayers-switcher >>> .igo-mini-basemap-container:hover .igo-mini-basemap-
   text-shadow: 0 0 5px #000 !important;
 }
 
-igo-geolocate-button, igo-zoom-button {
+igo-geolocate-button, igo-zoom-button, igo-legend-button {
   & >>> button.mat-icon-button.mat-primary {
     color: white;
     background-color: $primary-color;
@@ -165,30 +174,24 @@ igo-zoom-button >>> button.mat-icon-button.mat-primary:hover {
 
 #logo {
   position: absolute;
-  bottom: $igo-margin;
+  bottom: 2px;
   right: 60px;
 }
 
 igo-map-browser.toast-shown-offset {
   +media(mobile) {
-    & >>> .ol-scale-line {
-      bottom: 52px;
-    }
-
+    & >>> .ol-scale-line,
     & >>> #logo {
-      bottom: 55px;
+      bottom: 52px;
     }
   }
 }
 
 igo-map-browser.toast-opened-offset {
   +media(mobile) {
-    & >>> .ol-scale-line {
-      bottom: 302px;
-    }
-
+    & >>> .ol-scale-line,
     & >>> #logo {
-      bottom: 305px;
+      bottom: 302px;
     }
   }
 }

@@ -2,16 +2,16 @@
   {
     "uri": "_default",
     "title": "Risques d'inondation",
-    "icon": "grain"
+    "iconImage": "/assets/images/contexts/Risque-inondation.png"
   },
   {
     "uri": "historique",
     "title": "Historique des inondations",
-    "icon": "history"
+    "iconImage": "/assets/images/contexts/Historique-inondation.png"
   },
   {
     "uri": "alerte_meteo",
     "title": "Alerte météo",
-    "icon": "warning"
+    "iconImage": "/assets/images/contexts/Alerte-meteo.png"
   }
 ]

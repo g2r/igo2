@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Register } from '@igo2/igo2';
+import { Register, MessageService } from '@igo2/igo2';
 
 
 @Register({
@@ -15,6 +15,13 @@ import { Register } from '@igo2/igo2';
 })
 export class AboutToolComponent {
 
-  constructor() { }
+  constructor(private messageService: MessageService) { }
+
+  raiseError() {
+    this.messageService.error(
+      'Ceci est le message d\'erreur. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      'Titre de l\'erreur'
+    );
+  }
 
 }

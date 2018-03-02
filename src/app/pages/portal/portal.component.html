@@ -57,6 +57,7 @@
     (@mapStateY.start)="removeMapBrowserClass($event)"
     (@mapStateY.done)="updateMapBrowserClass($event)">
 
+    <igo-legend-button color="primary"></igo-legend-button>
     <igo-zoom-button [map]="map" color="primary"></igo-zoom-button>
     <igo-geolocate-button [map]="map" color="primary"
       [@controlStateY]="(mediaService.media$ | async) === 'mobile' &&
@@ -70,7 +71,7 @@
     </igo-baselayers-switcher>
 
     <a id="logo" href="http://www.gouv.qc.ca" target="_blank">
-      <img src="/assets/images/gouv_qc_logo.png">
+      <img src="/assets/images/Quebec.png">
     </a>
   </igo-map-browser>
 

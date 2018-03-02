@@ -3,8 +3,9 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '../../shared';
 
 import { SidenavComponent } from './sidenav';
+import { ToastComponent } from './toast';
+import { LegendButtonComponent } from './legend';
 import { PortalComponent } from './portal.component';
-import { ToastComponent } from './toast/toast.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { ToastComponent } from './toast/toast.component';
   declarations: [
     PortalComponent,
     SidenavComponent,
-    ToastComponent
+    ToastComponent,
+    LegendButtonComponent
   ]
 })
 export class PortalModule {}

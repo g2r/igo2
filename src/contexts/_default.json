@@ -56,10 +56,15 @@
     },
     {
       "name": "shareMap",
-      "title": "shareMap"
+      "title": "shareMap",
+      "options": {
+        "hasCopyLinkButton": true,
+        "hasShareMapButton": false
+      }
     },
     {
-      "name": "about"
+      "name": "about",
+      "iconImage": "/assets/images/tools/A-propos.png"
     },
     {
       "name": "contact"

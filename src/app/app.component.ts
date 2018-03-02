@@ -12,6 +12,10 @@ export class AppComponent {
 
   public authConfig: AuthOptions;
 
+  public messageCenterOptions = {
+    timeOut: 0
+  };
+
   constructor(protected languageService: LanguageService,
               private configService: ConfigService) {
 
