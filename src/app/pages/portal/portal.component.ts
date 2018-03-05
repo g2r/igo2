@@ -64,7 +64,12 @@ export class PortalComponent implements OnInit, OnDestroy {
               public contextService: ContextService,
               public messageService: MessageService,
               public sidenavService: SidenavService,
-              public cdRef: ChangeDetectorRef) {}
+              public cdRef: ChangeDetectorRef) {
+
+    // this.map.overlayStyle.setFill(new ol.style.Fill({
+    // 	color: [255, 0, 0, 0.5]
+    // }))
+  }
 
   ngOnInit() {
 
