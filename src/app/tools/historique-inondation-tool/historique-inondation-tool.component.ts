@@ -7,7 +7,7 @@ import { SidenavService } from '../../pages/portal/sidenav';
 @Register({
   name: 'historiqueInondation',
   title: 'historiqueInondation',
-  iconImage: '/assets/images/contexts/Historique-inondation.png'
+  iconImage: './assets/images/contexts/Historique-inondation.png'
 })
 @Component({
   selector: 'app-historique-inondation-tool',

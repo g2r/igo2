@@ -7,7 +7,7 @@ import { ContactToolComponent } from './contact-tool';
 import { AlerteMeteoToolComponent } from './alerte-meteo-tool';
 import { RisqueInondationToolComponent } from './risque-inondation-tool';
 import { HistoriqueInondationToolComponent } from './historique-inondation-tool';
-
+import { ProprioToolComponent } from './proprio-tool';
 
 @NgModule({
   imports: [
@@ -17,6 +17,8 @@ import { HistoriqueInondationToolComponent } from './historique-inondation-tool'
     AlerteMeteoToolComponent,
     HistoriqueInondationToolComponent,
     RisqueInondationToolComponent,
+    ProprioToolComponent,
+
     AboutToolComponent,
     ContactToolComponent
   ],
@@ -24,6 +26,8 @@ import { HistoriqueInondationToolComponent } from './historique-inondation-tool'
     AlerteMeteoToolComponent,
     HistoriqueInondationToolComponent,
     RisqueInondationToolComponent,
+    ProprioToolComponent,
+
     AboutToolComponent,
     ContactToolComponent
   ],
@@ -31,6 +35,8 @@ import { HistoriqueInondationToolComponent } from './historique-inondation-tool'
     AlerteMeteoToolComponent,
     HistoriqueInondationToolComponent,
     RisqueInondationToolComponent,
+    ProprioToolComponent,
+
     AboutToolComponent,
     ContactToolComponent
   ]

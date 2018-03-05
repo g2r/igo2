@@ -7,7 +7,7 @@ import { SidenavService } from '../../pages/portal/sidenav';
 @Register({
   name: 'risqueInondation',
   title: 'risqueInondation',
-  iconImage: '/assets/images/contexts/Risque-inondation.png'
+  iconImage: './assets/images/contexts/Risque-inondation.png'
 })
 @Component({
   selector: 'app-risque-inondation-tool',
