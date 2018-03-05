@@ -10,7 +10,7 @@
     "iconImage": "./assets/images/contexts/Historique-inondation.png"
   },
   {
-    "uri": "alerte_meteo",
+    "uri": "alerte",
     "title": "Alerte météo",
     "iconImage": "./assets/images/contexts/Alerte-meteo.png"
   }

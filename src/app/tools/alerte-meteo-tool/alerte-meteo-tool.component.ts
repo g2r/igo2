@@ -24,6 +24,6 @@ export class AlerteMeteoToolComponent implements OnInit {
 
   ngOnInit() {
     this.sidenavService.close();
-    this.contextService.loadContext('alerte_meteo');
+    this.contextService.loadContext('alerte');
   }
 }

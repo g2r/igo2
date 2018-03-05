@@ -24,6 +24,6 @@ export class RisqueInondationToolComponent implements OnInit {
 
   ngOnInit() {
     this.sidenavService.close();
-    this.contextService.loadContext('historique');
+    this.contextService.loadContext('_default');
   }
 }

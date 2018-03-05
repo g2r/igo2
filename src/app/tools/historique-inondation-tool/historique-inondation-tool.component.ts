@@ -24,6 +24,6 @@ export class HistoriqueInondationToolComponent implements OnInit {
 
   ngOnInit() {
     this.sidenavService.close();
-    this.contextService.loadContext('_default');
+    this.contextService.loadContext('historique');
   }
 }
