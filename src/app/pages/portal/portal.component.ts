@@ -7,7 +7,7 @@ import { AuthService, DataSourceService, Context, ContextService, MessageService
 
 import { controlSlideX, controlSlideY, mapSlideX, mapSlideY } from './portal.animation';
 
-// import { AboutToolComponent } from '../../tools';
+import { SidenavService } from './sidenav';
 
 @Component({
   selector: 'app-portal',
@@ -41,7 +41,11 @@ export class PortalComponent implements OnInit, OnDestroy {
     overlay: true
   });
 
-  public sidenavOpened: boolean = false;
+  get sidenavOpened(): boolean { return this.sidenavService.isOpened; }
+  set sidenavOpened(value: boolean) {
+    this.sidenavService.open(value);
+  }
+
   public toastOpened: boolean = false;
   public toastShown: boolean = false;
   public displaySearchResultsList: boolean = false;
@@ -59,6 +63,7 @@ export class PortalComponent implements OnInit, OnDestroy {
               public dataSourceService: DataSourceService,
               public contextService: ContextService,
               public messageService: MessageService,
+              public sidenavService: SidenavService,
               public cdRef: ChangeDetectorRef) {}
 
   ngOnInit() {

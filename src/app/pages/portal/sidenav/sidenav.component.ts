@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 
 import { Tool, ToolService } from '@igo2/igo2';
 
+import { SidenavService } from './sidenav.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -11,12 +12,10 @@ import { Tool, ToolService } from '@igo2/igo2';
 export class SidenavComponent {
 
   @Input()
-  get opened(): boolean { return this._opened; }
+  get opened(): boolean { return this.sidenavService.isOpened; }
   set opened(value: boolean) {
-    this._opened = value;
+    this.sidenavService.open(value);
   }
-  private _opened: boolean;
-
 
   @Input()
   get tool(): Tool { return this._tool; }
@@ -26,6 +25,9 @@ export class SidenavComponent {
   private _tool: Tool;
 
 
-  constructor(public toolService: ToolService) { }
+  constructor(
+    public toolService: ToolService,
+    public sidenavService: SidenavService
+  ) { }
 
 }

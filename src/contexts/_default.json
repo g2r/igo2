@@ -44,12 +44,23 @@
     }
   ],
   "toolbar": [
-    "contextManager",
+    "risqueInondation",
+    "historiqueInondation",
+    "alerteMeteo",
     "shareMap",
     "about",
     "contact"
   ],
   "tools": [
+    {
+      "name": "risqueInondation"
+    },
+    {
+      "name": "historiqueInondation"
+    },
+    {
+      "name": "alerteMeteo"
+    },
     {
       "name": "contextManager",
       "title": "theme"

@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 
 import { SharedModule } from '../../shared';
 
-import { SidenavComponent } from './sidenav';
+import { SidenavComponent, SidenavService } from './sidenav';
 import { ToastComponent } from './toast';
 import { LegendButtonComponent } from './legend';
 import { PortalComponent } from './portal.component';
@@ -21,4 +21,14 @@ import { PortalComponent } from './portal.component';
     LegendButtonComponent
   ]
 })
-export class PortalModule {}
+
+export class PortalModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: PortalModule,
+      providers: [
+        SidenavService
+      ]
+    };
+  }
+}

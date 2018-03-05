@@ -24,7 +24,7 @@ import { AppToolModule } from './tools';
     IgoModule.forRoot(),
     AppToolModule.forRoot(),
 
-    PortalModule
+    PortalModule.forRoot()
   ],
   providers: [
     provideConfigOptions({

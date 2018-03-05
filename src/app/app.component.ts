@@ -13,7 +13,8 @@ export class AppComponent {
   public authConfig: AuthOptions;
 
   public messageCenterOptions = {
-    timeOut: 0
+    timeOut: 0,
+    hasCloseIcon: true
   };
 
   constructor(protected languageService: LanguageService,

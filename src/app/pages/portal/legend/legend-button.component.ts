@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'igo-legend-button',
+  selector: 'app-legend-button',
   templateUrl: './legend-button.component.html',
   styleUrls: ['./legend-button.component.styl']
 })

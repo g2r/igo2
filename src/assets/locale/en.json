@@ -8,5 +8,7 @@
   "about": "About",
   "contact": "Contact us",
   "alerteMeteo": "Weather alert",
+  "historiqueInondation": "Historical flood",
+  "risqueInondation": "Flood risk",
   "theme": "Themes"
 }

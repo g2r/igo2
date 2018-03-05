@@ -5,6 +5,8 @@ import { AboutToolComponent } from './about-tool';
 import { ContactToolComponent } from './contact-tool';
 
 import { AlerteMeteoToolComponent } from './alerte-meteo-tool';
+import { RisqueInondationToolComponent } from './risque-inondation-tool';
+import { HistoriqueInondationToolComponent } from './historique-inondation-tool';
 
 
 @NgModule({
@@ -13,16 +15,22 @@ import { AlerteMeteoToolComponent } from './alerte-meteo-tool';
   ],
   declarations: [
     AlerteMeteoToolComponent,
+    HistoriqueInondationToolComponent,
+    RisqueInondationToolComponent,
     AboutToolComponent,
     ContactToolComponent
   ],
   exports: [
     AlerteMeteoToolComponent,
+    HistoriqueInondationToolComponent,
+    RisqueInondationToolComponent,
     AboutToolComponent,
     ContactToolComponent
   ],
   entryComponents: [
     AlerteMeteoToolComponent,
+    HistoriqueInondationToolComponent,
+    RisqueInondationToolComponent,
     AboutToolComponent,
     ContactToolComponent
   ]

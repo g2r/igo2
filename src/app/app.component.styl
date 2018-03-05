@@ -1,4 +1,5 @@
 @require '../style/var.styl';
+@require '../style/media.styl';
 
 :host {
   width: 100%;
@@ -27,6 +28,9 @@
 igo-spinner {
   position: absolute;
   top: $igo-margin;
-  left: $igo-margin;
+  right: $igo-margin;
   z-index: 5;
+  +media(mobile) {
+    top: 55px;
+  }
 }
